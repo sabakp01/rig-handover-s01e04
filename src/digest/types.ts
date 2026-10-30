@@ -15,10 +15,12 @@ export type DigestRow = {
 };
 
 // One night read from disk: rows sorted by job, plus how many lines did not parse.
+export type NightCounts = { ok: number; retry: number; fail: number };
+
 export type Night = {
   rows: DigestRow[];
   badLines: number;
-  counts: { ok: number; retry: number; fail: number };
+  counts: NightCounts;
 };
 
 // readNight(runsDir, night): the night's rows, or null when there is no such file.
