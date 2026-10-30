@@ -40,5 +40,13 @@ export function createApp(config: RigConfig = loadConfig()) {
     );
   });
 
+  // Issue #3 (plan.md § 2b). Same rows as the page, same order — one source, no disagreement (ADR 0001).
+  app.get('/api/digest/:night', (c) => {
+    const night = c.req.param('night');
+    const read = readNight(config.runsDir, night);
+    if (read === null) return c.json({ night, error: 'no run log' }, 404);
+    return c.json({ night, rows: read.rows, badLines: read.badLines, counts: read.counts });
+  });
+
   return app;
 }
