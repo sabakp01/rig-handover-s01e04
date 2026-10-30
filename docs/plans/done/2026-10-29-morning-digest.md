@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-10-30
 ---
 
 # Morning digest
@@ -77,3 +78,18 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issue list
+
+All issues carried the label `plan:morning-digest` and each body started with
+`Source: plan.md § <n>` (ADR 0002).
+
+| # | Section | Title | Result |
+|---|---------|-------|--------|
+| 1 | § 1 | Digest types + run log reader | closed — `src/digest/types.ts` landed first, then the reader; bad lines counted, null owners kept |
+| 2 | § 2a | Digest page: `GET /digest/:night` | closed — sorted table, retries ≥ 3 and fails marked, 404 for missing night, "nothing ran" for empty |
+| 3 | § 2b | Digest JSON: `GET /api/digest/:night` | closed — same `readNight()` as the page, so they cannot disagree |
+| 4 | § 2c | Board links each night to its digest | closed — nights list now links with ok/retry/fail counts |
+| 5 | § 2d | Route tests for digest page and JSON | closed — 15 tests green, temp runs dir, `runs/` untouched |
+| 6 | § 3 | Preview for review | closed — saved by command from the running rig, published at https://sabakp01.github.io/rig-preview-s01e04/digest.html, link sent to reviewer |
+| 7 | § 4 | Clean up preview, move plan to done | closed — page re-saved with `LANE_MARKER` unset and uploaded over the same link (history rewritten, no commit carries the marker); plan moved here |
